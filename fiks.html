@@ -1,0 +1,174 @@
+04.19 00.04
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GoldenBet - Transaksi</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #000; color: gold; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
+    .bg-gold { background-color: gold; }
+    .text-gold { color: gold; }
+    .btn-glow {
+      transition: 0.3s;
+    }
+    .btn-glow:hover {
+      box-shadow: 0 0 15px gold;
+      background-color: #f6c600;
+    }
+    .section {
+      padding: 4rem 1rem;
+      border-bottom: 2px solid gold;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+
+  <header class="bg-black border-b border-gold shadow-lg p-4 fixed top-0 w-full z-50">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-extrabold text-gold">GoldenBet</h1>
+      <nav class="space-x-4 text-sm">
+        <a href="#deposit" class="hover:underline">Deposit</a>
+        <a href="#withdraw" class="hover:underline">Withdraw</a>
+        <a href="#status" class="hover:underline">Status Transaksi</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="pt-24">
+
+    <!-- DEPOSIT -->
+    <section id="deposit" class="section">
+      <h2 class="text-3xl font-bold mb-6 text-center">Formulir Deposit</h2>
+      <form class="max-w-xl mx-auto bg-black p-6 rounded-xl border border-gold space-y-4 shadow-xl">
+        <div>
+          <label class="block mb-1">Nominal Deposit</label>
+          <input type="number" class="w-full p-2 rounded bg-gray-900 text-white" placeholder="Contoh: 1000 = Rp. 1000" required />
+        </div>
+        <div>
+          <label class="block mb-1">Pilih Bank / E-Wallet</label>
+          <select id="paymentMethod" class="w-full p-2 rounded bg-gray-900 text-white" onchange="updateAccountInfo()">
+            <option value="BCA">BCA</option>
+            <option value="BNI">BNI</option>
+            <option value="Mandiri">Mandiri</option>
+            <option value="OVO">OVO</option>
+            <option value="DANA">DANA</option>
+            <option value="Gopay">Gopay</option>
+            <option value="QRIS">QRIS</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1">No. Rekening / QR Admin Tujuan</label>
+          <!-- Kolom ini otomatis terisi dengan data dari Admin berdasarkan pilihan bank -->
+          <input type="text" class="w-full p-2 rounded bg-gray-900 text-white" id="adminAccount" disabled value="0812-XXXXXXX (Admin)" required />
+        </div>
+        <div>
+          <label class="block mb-1">Upload Bukti Transfer</label>
+          <input type="file" class="w-full p-2 bg-gray-900 text-white" accept="image/*" required />
+        </div>
+        <button type="submit" class="w-full py-3 rounded-xl bg-gold text-black font-bold btn-glow">Kirim Deposit</button>
+        <p class="text-center mt-2 italic text-sm">Semoga jackpot terus yaaa :)</p>
+      </form>
+    </section>
+
+    <!-- WITHDRAW -->
+    <section id="withdraw" class="section">
+      <h2 class="text-3xl font-bold mb-6 text-center">Formulir Withdraw</h2>
+      <form class="max-w-xl mx-auto bg-black p-6 rounded-xl border border-gold space-y-4 shadow-xl">
+        <div>
+          <label class="block mb-1">Nominal Withdraw</label>
+          <input type="number" class="w-full p-2 rounded bg-gray-900 text-white" placeholder="Contoh: 1000 = Rp. 1000" required />
+        </div>
+        <div>
+          <label class="block mb-1">Metode Penerimaan</label>
+          <select class="w-full p-2 rounded bg-gray-900 text-white">
+            <option>BCA</option>
+            <option>BNI</option>
+            <option>Mandiri</option>
+            <option>OVO</option>
+            <option>DANA</option>
+            <option>Gopay</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1">No. Rekening / Nomor HP</label>
+          <input type="text" class="w-full p-2 rounded bg-gray-900 text-white" placeholder="Masukkan nomor tujuan pencairan" required />
+        </div>
+        <button type="submit" class="w-full py-3 rounded-xl bg-gold text-black font-bold btn-glow">Kirim Withdraw</button>
+        <p class="text-center mt-2 italic text-sm">Semoga jackpot terus yaaa :)</p>
+      </form>
+    </section>
+
+    <!-- STATUS TRANSAKSI -->
+    <section id="status" class="section">
+      <h2 class="text-3xl font-bold mb-6 text-center">Status Transaksi</h2>
+      <div class="max-w-4xl mx-auto bg-black p-6 rounded-xl border border-gold shadow-xl">
+        <table class="w-full text-left table-auto">
+          <thead class="text-gold border-b border-gold">
+            <tr>
+              <th class="p-2">Tanggal</th>
+              <th class="p-2">Jenis</th>
+              <th class="p-2">Nominal</th>
+              <th class="p-2">Status</th>
+            </tr>
+          </thead>
+          <tbody class="text-white">
+            <tr class="border-t border-gray-700">
+              <td class="p-2">2025-04-18</td>
+              <td class="p-2">Deposit</td>
+              <td class="p-2">Rp. 100.000</td>
+              <td class="p-2 text-green-400">Sukses</td>
+            </tr>
+            <tr class="border-t border-gray-700">
+              <td class="p-2">2025-04-17</td>
+              <td class="p-2">Withdraw</td>
+              <td class="p-2">Rp. 50.000</td>
+              <td class="p-2 text-yellow-400">Diproses</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="text-center p-4 mt-10 border-t border-gold text-sm">
+    &copy; 2025 GoldenBet. Semua hak dilindungi.
+  </footer>
+
+  <script>
+    function updateAccountInfo() {
+      var paymentMethod = document.getElementById('paymentMethod').value;
+      var adminAccount = document.getElementById('adminAccount');
+
+      switch (paymentMethod) {
+        case 'BCA':
+          adminAccount.value = "BCA: 123-456-7890";
+          break;
+        case 'BNI':
+          adminAccount.value = "BNI: 987-654-3210";
+          break;
+        case 'Mandiri':
+          adminAccount.value = "Mandiri: 112-233-4455";
+          break;
+        case 'OVO':
+          adminAccount.value = "OVO: 0812-XXXXXXX";
+          break;
+        case 'DANA':
+          adminAccount.value = "DANA: 0812-YYYYYYY";
+          break;
+        case 'Gopay':
+          adminAccount.value = "Gopay: 0812-ZZZZZZZ";
+          break;
+        case 'QRIS':
+          adminAccount.value = "QRIS: [QR Code Admin]";
+          break;
+        default:
+          adminAccount.value = "0812-XXXXXXX (Admin)";
+      }
+    }
+  </script>
+
+</body>
+</html>
