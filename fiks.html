@@ -1,4 +1,3 @@
-04.19 00.04
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -10,9 +9,7 @@
     body { background-color: #000; color: gold; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
     .bg-gold { background-color: gold; }
     .text-gold { color: gold; }
-    .btn-glow {
-      transition: 0.3s;
-    }
+    .btn-glow { transition: 0.3s; }
     .btn-glow:hover {
       box-shadow: 0 0 15px gold;
       background-color: #f6c600;
@@ -29,6 +26,7 @@
     <div class="container mx-auto flex justify-between items-center">
       <h1 class="text-2xl font-extrabold text-gold">GoldenBet</h1>
       <nav class="space-x-4 text-sm">
+        <a href="index.html" class="hover:underline">Beranda</a>
         <a href="#deposit" class="hover:underline">Deposit</a>
         <a href="#withdraw" class="hover:underline">Withdraw</a>
         <a href="#status" class="hover:underline">Status Transaksi</a>
@@ -60,7 +58,6 @@
         </div>
         <div>
           <label class="block mb-1">No. Rekening / QR Admin Tujuan</label>
-          <!-- Kolom ini otomatis terisi dengan data dari Admin berdasarkan pilihan bank -->
           <input type="text" class="w-full p-2 rounded bg-gray-900 text-white" id="adminAccount" disabled value="0812-XXXXXXX (Admin)" required />
         </div>
         <div>
@@ -141,31 +138,15 @@
     function updateAccountInfo() {
       var paymentMethod = document.getElementById('paymentMethod').value;
       var adminAccount = document.getElementById('adminAccount');
-
       switch (paymentMethod) {
-        case 'BCA':
-          adminAccount.value = "BCA: 123-456-7890";
-          break;
-        case 'BNI':
-          adminAccount.value = "BNI: 987-654-3210";
-          break;
-        case 'Mandiri':
-          adminAccount.value = "Mandiri: 112-233-4455";
-          break;
-        case 'OVO':
-          adminAccount.value = "OVO: 0812-XXXXXXX";
-          break;
-        case 'DANA':
-          adminAccount.value = "DANA: 0812-YYYYYYY";
-          break;
-        case 'Gopay':
-          adminAccount.value = "Gopay: 0812-ZZZZZZZ";
-          break;
-        case 'QRIS':
-          adminAccount.value = "QRIS: [QR Code Admin]";
-          break;
-        default:
-          adminAccount.value = "0812-XXXXXXX (Admin)";
+        case 'BCA': adminAccount.value = "BCA: 123-456-7890"; break;
+        case 'BNI': adminAccount.value = "BNI: 987-654-3210"; break;
+        case 'Mandiri': adminAccount.value = "Mandiri: 112-233-4455"; break;
+        case 'OVO': adminAccount.value = "OVO: 0812-XXXXXXX"; break;
+        case 'DANA': adminAccount.value = "DANA: 0812-YYYYYYY"; break;
+        case 'Gopay': adminAccount.value = "Gopay: 0812-ZZZZZZZ"; break;
+        case 'QRIS': adminAccount.value = "QRIS: [QR Code Admin]"; break;
+        default: adminAccount.value = "0812-XXXXXXX (Admin)";
       }
     }
   </script>
